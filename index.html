@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Der Inhalt meiner Tränen</title>
+    
+    <!-- Google Fonts: Elegancia y Sentimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-crema: #fdfbf7;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --oro: #bfa15f;
+            --oro-dark: #9e8243;
+            --blanco: #ffffff;
+            --fuente-titulo: 'Cormorant Garamond', serif;
+            --fuente-cuerpo: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-crema);
+            color: var(--text-dark);
+            font-family: var(--fuente-cuerpo);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Selector de Idioma Flotante */
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(191, 161, 95, 0.3);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-family: var(--fuente-cuerpo);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 10px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            color: var(--oro-dark);
+            font-weight: bold;
+        }
+
+        /* Ocultar textos del idioma no seleccionado */
+        [lang="es"] { display: none; }
+
+        /* Contenedor Principal Estilo Libro */
+        .wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Encabezado Emocional */
+        header {
+            text-align: center;
+            margin-bottom: 70px;
+            padding-top: 40px;
+        }
+
+        .main-title {
+            font-family: var(--fuente-titulo);
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .sub-title {
+            font-family: var(--fuente-titulo);
+            font-size: 2.2rem;
+            font-style: italic;
+            color: var(--oro);
+            margin-bottom: 30px;
+        }
+
+        .divider {
+            width: 50px;
+            height: 1px;
+            background-color: var(--oro);
+            margin: 0 auto 30px auto;
+        }
+
+        /* Sección de Venta con Estilo Limpio */
+        .book-intro {
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .quote {
+            font-family: var(--fuente-titulo);
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+
+        .purchase-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--text-dark);
+            color: var(--bg-crema);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--oro-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--oro);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--oro);
+            color: var(--blanco);
+            transform: translateY(-2px);
+        }
+
+        /* Contenido de Lectura */
+        .content-section {
+            margin-bottom: 60px;
+        }
+
+        .section-heading {
+            font-family: var(--fuente-titulo);
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .text-p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-align: justify;
+            font-weight: 300;
+        }
+
+        /* Contacto Sentimental */
+        .contact-box {
+            background-color: #1a1a1a;
+            color: var(--blanco);
+            padding: 5px;
+            border-radius: 4px;
+            padding: 40px;
+            margin-top: 80px;
+        }
+
+        .contact-box h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+            color: var(--oro);
+        }
+
+        .contact-box p {
+            font-size: 0.85rem;
+            margin-bottom: 30px;
+            opacity: 0.7;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--blanco);
+            font-family: var(--fuente-cuerpo);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--oro);
+        }
+
+        .btn-submit {
+            background-color: var(--oro);
+            color: var(--blanco);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            padding: 16px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--oro-dark);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 0.75rem;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .main-title { font-size: 2.8rem; }
+            .sub-title { font-size: 1.8rem; }
+            .book-intro { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Selector de Idioma -->
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLanguage('de')">DE</button>
+        <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+    </div>
+
+    <div class="wrapper">
+        
+        <!-- ENCABEZADO -->
+        <header>
+            <h1 class="main-title">Der Inhalt meiner Tränen</h1>
+            <div class="divider"></div>
+            <h2 class="sub-title">El Contenido de mis Lágrimas</h2>
+        </header>
+
+        <!-- SECCIÓN DE INTRODUCCIÓN EMOCIONAL -->
+        <div class="book-intro">
+            <!-- Alemán -->
+            <div class="lang-group" lang="de">
+                <p class="quote">„Worte, die den Schmerz berühren und die Seele heilen.“</p>
+                <p class="text-p" style="text-align: center; margin-bottom: 30px;">Willkommen auf der offiziellen Website des Buches. Ein intimes Werk, das tief in die menschlichen Emotionen eintaucht.</p>
+                <div class="purchase-buttons">
+                    <a href="#" class="btn btn-primary">Auf Amazon kaufen</a>
+                    <a href="#" class="btn btn-secondary">Bei BoD kaufen</a>
+                </div>
+            </div>
+            <!-- Español -->
+            <div class="lang-group" lang="es">
+                <p class="quote">“Palabras que rozan el dolor y sanan el alma.”</p>
+                <p class="text-p" style="text-align: center; margin-bottom: 30px;">Bienvenido al sitio oficial del libro. Una obra íntima que se sumerge profundamente en las emociones humanas.</p>
+                <div class="purchase-buttons">
+                    <a href="#" class="btn btn-primary">Comprar en Amazon</a>
+                    <a href="#" class="btn btn-secondary">Comprar en BoD</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOBRE EL LIBRO -->
+        <main class="content-section">
+            <!-- Alemán -->
+            <div class="lang-group" lang="de">
+                <h2 class="section-heading">Über das Buch</h2>
+                <p class="text-p">Hier können Sie die offizielle Beschreibung Ihres Buches einfügen. Erzählen Sie Ihren Lesern, worum es in dieser emotionalen Reise geht, welche Themen Sie ansprechen und was dieses Buch so besonders für Sie macht.</p>
+                <p class="text-p">Lassen Sie Ihre Leser spüren, wie viel Herzblut in jeder einzelnen Seite von <em>Der Inhalt meiner Tränen</em> steckt.</p>
+            </div>
+            <!-- Español -->
+            <div class="lang-group" lang="es">
+                <h2 class="section-heading">Sobre el libro</h2>
+                <p class="text-p">Aquí puedes añadir la descripción oficial de tu libro. Cuéntales a tus lectores de qué trata este viaje emocional, qué temas abordas y qué hace que este libro sea tan especial para ti.</p>
+                <p class="text-p">Permite que tus lectores sientan todo el corazón que hay depositado en cada una de las páginas de <em>El Contenido de mis Lágrimas</em>.</p>
+            </div>
+        </main>
+
+        <!-- BIOGRAFÍA -->
+        <section class="content-section">
+            <!-- Alemán -->
+            <div class="lang-group" lang="de">
+                <h2 class="section-heading">Die Geschichte dahinter</h2>
+                <p class="text-p">Schreiben Sie hier ein paar persönliche Worte über sich selbst als Autorin/Autor. Was hat Sie dazu inspiriert, diese Zeilen zu verfassen? Ein professioneller und zugleich emotionaler Raum, um sich Ihren Lesern vorzustellen.</p>
+            </div>
+            <!-- Español -->
+            <div class="lang-group" lang="es">
+                <h2 class="section-heading">La historia detrás</h2>
+                <p class="text-p">Escribe aquí unas palabras personales sobre ti como autor o autora. ¿Qué te inspiró a escribir estas líneas? Un espacio profesional y a la vez emocional para presentarte ante tus lectores.</p>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section class="contact-box">
+            <!-- Alemán -->
+            <div class="lang-group" lang="de">
+                <h3>In Kontakt bleiben</h3>
+                <p>Für Leserbriefe, Fragen oder literarischen Austausch.</p>
+                <form action="#" method="POST">
+                    <input type="text" class="form-input" placeholder="Ihr Name" required>
+                    <input type="email" class="form-input" placeholder="Ihre E-Mail-Adresse" required>
+                    <textarea class="form-input" rows="4" placeholder="Ihre Nachricht..." required></textarea>
+                    <button type="submit" class="btn-submit">Nachricht senden</button>
+                </form>
+            </div>
+            <!-- Español -->
+            <div class="lang-group" lang="es">
+                <h3>Mantener el contacto</h3>
+                <p>Para cartas de lectores, preguntas o intercambio literario.</p>
+                <form action="#" method="POST">
+                    <input type="text" class="form-input" placeholder="Su nombre" required>
+                    <input type="email" class="form-input" placeholder="Su correo electrónico" required>
+                    <textarea class="form-input" rows="4" placeholder="Su mensaje..." required></textarea>
+                    <button type="submit" class="btn-submit">Enviar mensaje</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>&copy; 2026 Der Inhalt meiner Tränen. Alle Rechte vorbehalten.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script del Botón de Traducción Dinámica -->
+    <script>
+        function setLanguage(lang) {
+            // Ocultar todos los grupos de idiomas
+            const groups = document.querySelectorAll('.lang-group');
+            groups.forEach(group => group.style.display = 'none');
+
+            // Mostrar el idioma seleccionado
+            const selectedGroups = document.querySelectorAll(`.lang-group[lang="${lang}"]`);
+            selectedGroups.forEach(group => group.style.display = 'block');
+
+            // Actualizar botones del menú flotante
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if(lang === 'de') {
+                buttons[0].classList.add('active');
+            } else {
+                buttons[1].classList.add('active');
+            }
+        }
+        
+        // Inicializar la página en Alemán al cargar
+        document.addEventListener("DOMContentLoaded", function() {
+            setLanguage('de');
+        });
+    </script>
+
+</body>
+</html>
